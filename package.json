@@ -1,0 +1,35 @@
+{
+  "name": "demo-bookstore",
+  "version": "0.0.1",
+  "description": "Demo bookstore eCom api",
+  "main": "server.coffee",
+  "dependencies": {
+    "config": "~0.4.35",
+    "express": "~3.4.8",
+    "js-yaml": "~3.0.2",
+    "lodash": "~2.4.1",
+    "log4js": "~0.6.12",
+    "passport": "~0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "sh run_tests.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gmanvn/demo-bookstore.git"
+  },
+  "keywords": [
+    "ecom",
+    "demo",
+    "api",
+    "coffee-script",
+    "passport"
+  ],
+  "author": "me@tungv.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gmanvn/demo-bookstore/issues"
+  },
+  "homepage": "https://github.com/gmanvn/demo-bookstore"
+}
