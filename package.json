@@ -9,7 +9,13 @@
     "js-yaml": "~3.0.2",
     "lodash": "~2.4.1",
     "log4js": "~0.6.12",
-    "passport": "~0.2.0"
+    "passport": "~0.2.0",
+    "mongoose": "^3.8.8",
+    "baucis": "^0.15.1",
+    "require-all": "0.0.8",
+    "passport-http-bearer": "^1.0.1",
+    "oauth2orize": "^1.0.1",
+    "passport-local": "^0.1.6"
   },
   "devDependencies": {},
   "scripts": {

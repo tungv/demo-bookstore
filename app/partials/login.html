@@ -1,0 +1,15 @@
+<form ng-submit="login.login(loginForm)" name="loginForm">
+    <label for="email">
+        Email:
+    </label>
+    <input type="email" id="email" ng-model="login.email" autofill-enabled/>
+    <br/>
+    <label for="password">
+        Password:
+    </label>
+    <input type="password" id="password" ng-model="login.password" autofill-enabled/>
+    <br/>
+    <button class="btn btn-primary">
+        Login
+    </button>
+</form>
