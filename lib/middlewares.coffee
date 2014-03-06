@@ -1,6 +1,7 @@
-exports.ensureAuthCriteria = (req, res, next)->
-  ## extract information from request
-  email = req.body['email'] or req.headers['x-auth-username']
+crypto = require 'crypto'
+
+isSigningUp = (req)-> req.url is '/users' and req.method is 'POST'
+getPassword = (req)->
   password = req.body['password'] or req.headers['x-auth-token']
   hashed = req.query['hashed'] or req.headers['x-auth-hashed']
 
@@ -9,8 +10,41 @@ exports.ensureAuthCriteria = (req, res, next)->
 
   ## hash password if needed
   password = md5 password if password?.length and not hashed
+  return password
+
+getEmail = (req)->
+  req.body['email'] or req.headers['x-auth-username']
+
+md5 = (text)-> crypto.createHash('md5').update(text).digest("hex")
+
+
+exports.ensureAuthCriteria = (req, res, next)->
+  ## ignore signup
+  return next() if isSigningUp req
+
+#  console.log req.method, req.url
+
+  ## extract information from request
+  email = getEmail req
+  password = getPassword req
 
   ## reinsert authentication data back to body to unify with passport stardard
   req.body['password'] = password if password?.length
   req.body['email'] = email if email?.length
   next()
+
+exports.authenticate = (passport)->
+  (req, res, next)->
+#    console.log 'middleware.authenticate', req.body
+
+    if isSigningUp req
+      req.body['password'] = getPassword req
+      return next()
+
+    auth = passport.authenticate 'local', (err, user, info)->
+      if err? or not user
+        res.send(401, error:info);
+      else
+        next();
+
+    auth req, res

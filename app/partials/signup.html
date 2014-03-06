@@ -1,0 +1,25 @@
+<form name="signupForm" ng-submit="signup.submit(signupForm)">
+    <label for="displayName">
+        Name:
+    </label>
+    <input type="text" id="displayName" ng-model="signup.displayName" autofill-enabled required/>
+    <br/>
+    <label for="email">
+        Email:
+    </label>
+    <input type="email" id="email" ng-model="signup.email" autofill-enabled required/>
+    <br/>
+    <label for="password">
+        Password:
+    </label>
+    <input type="password" id="password" ng-model="signup.password" autocomplete="off" required/>
+    <br/>
+    <label for="retype_password">
+        Retype:
+    </label>
+    <input type="password" id="retype_password" ng-model="signup.retypePassword" autocomplete="off" required/>
+    <br/>
+    <button class="btn btn-primary">
+        Signup
+    </button>
+</form>

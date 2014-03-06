@@ -6,7 +6,6 @@ logger = log4js.getLogger 'app.coffee'
 express = require 'express'
 fs = require 'fs'
 baucis = require 'baucis'
-crypto = require 'crypto'
 _ = require 'lodash'
 
 ## cache index file
@@ -30,18 +29,25 @@ app.use express.compress()
 app.use express.methodOverride()
 app.use express.static __dirname + '/../app'
 
+## init authentication
+passport = require './authentication.coffee'
+
 ## custom middlewares
 middlewares = require './middlewares.coffee'
 app.use '/api', middlewares.ensureAuthCriteria
-
-
-## init models and authentication
-passport = require './authentication.coffee'
-models = require('./models/index.coffee') {passport}
+app.use '/api', middlewares.authenticate(passport)
 
 ## passport middlewares
 app.use passport.initialize()
 app.use passport.session()
+
+bookCtrl = baucis.rest 'book'
+userCtrl = baucis.rest {
+  model: 'user'
+  select: '-salt -hashedPassword'
+}
+
+#bookCtrl.request
 
 ## restful api routes
 app.use '/api', baucis()
@@ -76,6 +82,4 @@ exports.start = (cb)->
   logger.info "Application start listening on port #{port} - mode: #{env}"
 
 
-md5 = (text)->
-  crypto.createHash('md5').update(text).digest("hex")
 

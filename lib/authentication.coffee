@@ -1,6 +1,6 @@
 passport = require 'passport'
 LocalStrategy = require('passport-local').Strategy
-models = require('./models/index.coffee') {passport}
+models = require('./models/index.coffee')
 
 logger = require('log4js').getLogger 'authentication'
 

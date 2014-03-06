@@ -11,6 +11,10 @@ angular.module 'BookStore', ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize']
             controller: 'LoginCtrl as login'
             templateUrl: 'partials/login.html'
           })
+      .when('/signup', {
+            controller: 'SignUpCtrl as signup'
+            templateUrl: 'partials/signup.html'
+          })
       .when('/books', {
             controller: 'BookIndexCtrl as index'
             templateUrl: 'partials/book-index.html'
