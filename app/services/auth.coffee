@@ -17,8 +17,7 @@ angular.module 'BookStore'
 
       @logout = (callback=angular.noop)->
         $http.post '/api/logout'
-          , {}
-          , ()->
+          .then (resp)->
             $rootScope.user = {}
             callback()
 

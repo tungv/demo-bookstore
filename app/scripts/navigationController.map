@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "navigationController.js",
+  "sourceRoot": "",
+  "sources": [
+    "navigationController.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA,cAAA;;AAAA,EAAA,OAAO,CAAC,MAAR,CAAe,WAAf,CACE,CAAC,UADH,CACc,gBADd,EACsC;AAClC,IAAA,cAAC,CAAA,OAAD,GAAW,CAAC,MAAD,CAAX,CAAA;;AACa,IAAA,wBAAE,IAAF,GAAA;AAAQ,MAAP,IAAC,CAAA,OAAA,IAAM,CAAR;IAAA,CADb;;AAAA,6BAGA,MAAA,GAAQ,SAAA,GAAA;aACN,IAAC,CAAA,IAAI,CAAC,MAAN,CAAA,EADM;IAAA,CAHR,CAAA;;0BAAA;;MAFJ,CAAA,CAAA;AAAA"
+}
