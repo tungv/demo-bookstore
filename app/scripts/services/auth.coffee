@@ -4,20 +4,26 @@ angular.module 'BookStore'
     constructor: ($location, $rootScope, $cookieStore, $http)->
 
       $rootScope.user = $cookieStore.get('user') or {}
-      $cookieStore.remove 'user'
 
       @login = (email, password, callback=angular.noop)->
         $http.post '/api/login?hashed=true', {email, password}
           .then (resp)->
-            data = resp.data
-            $rootScope.user = data
-            callback null, data
+            user = angular.extend resp.data, {password}
+            $rootScope.user = user
+            $cookieStore.put 'user', user
+            callback null, $rootScope.user
+
+            $location.path('/books')
           , (err)->
+            $cookieStore.remove 'user'
             callback err
 
       @logout = (callback=angular.noop)->
         $http.post '/api/logout'
-          .then (resp)->
+          .then ->
             $rootScope.user = {}
+            $cookieStore.remove 'user'
+            $location.path '/'
             callback()
 
+      @isLoggedIn = -> !!$rootScope.user?.email

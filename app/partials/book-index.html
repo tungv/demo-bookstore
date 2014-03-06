@@ -1,0 +1,12 @@
+<div class="book-list">
+    <div ng-repeat="book in index.books track by book.id"
+         class="book"
+         id="book-id-{{book.id}}">
+
+        <h3>{{book.name}}</h3>
+        <p>{{book.desc}}</p>
+        <ins>{{book.price}}</ins>
+        <img ng-src="{{book.picture}}" alt="{{book.desc}}"/>
+
+    </div>
+</div>

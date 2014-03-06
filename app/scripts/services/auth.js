@@ -7,7 +7,6 @@
 
     function Auth($location, $rootScope, $cookieStore, $http) {
       $rootScope.user = $cookieStore.get('user') || {};
-      $cookieStore.remove('user');
       this.login = function(email, password, callback) {
         if (callback == null) {
           callback = angular.noop;
@@ -16,11 +15,16 @@
           email: email,
           password: password
         }).then(function(resp) {
-          var data;
-          data = resp.data;
-          $rootScope.user = data;
-          return callback(null, data);
+          var user;
+          user = angular.extend(resp.data, {
+            password: password
+          });
+          $rootScope.user = user;
+          $cookieStore.put('user', user);
+          callback(null, $rootScope.user);
+          return $location.path('/books');
         }, function(err) {
+          $cookieStore.remove('user');
           return callback(err);
         });
       };
@@ -28,10 +32,16 @@
         if (callback == null) {
           callback = angular.noop;
         }
-        return $http.post('/api/logout').then(function(resp) {
+        return $http.post('/api/logout').then(function() {
           $rootScope.user = {};
+          $cookieStore.remove('user');
+          $location.path('/');
           return callback();
         });
+      };
+      this.isLoggedIn = function() {
+        var _ref;
+        return !!((_ref = $rootScope.user) != null ? _ref.email : void 0);
       };
     }
 

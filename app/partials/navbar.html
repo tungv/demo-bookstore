@@ -1,0 +1,12 @@
+<div class="user" ng-show="user.email" ng-controller="NavigationCtrl as nav">
+    welcome, {{ user.displayName }} [
+    <a href="#" ng-click="nav.logout()">
+        logout
+    </a>
+    ]
+</div>
+
+<div class="no-user" ng-hide="user.email">
+    Welcome Guest, please
+    <a href="/login">log in</a>
+</div>

@@ -4,13 +4,8 @@
     <title></title>
 </head>
 <body ng-app="BookStore">
-    <div class="user" ng-show="user.email" ng-controller="NavigationCtrl as nav">
-        welcome, {{ user.displayName }} [
-        <a href="#" ng-click="nav.logout()">
-            logout
-        </a>
-        ]
-    </div>
+    <ng-include src="'/partials/navbar.html'">
+    </ng-include>
     <div class="container">
         <div ng-view></div>
     </div>
@@ -23,11 +18,20 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/JavaScript-MD5/js/md5.min.js"></script>
 
+    <!-- app scripts -->
     <script src="scripts/app.js"></script>
-    <script src="services/auth.js"></script>
-    <script src="directives/autofillEnabledDirective.js"></script>
-    <script src="scripts/navigationController.js"></script>
-    <script src="scripts/homeController.js"></script>
-    <script src="scripts/loginController.js"></script>
+
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/services/books.js"></script>
+
+    <script src="scripts/directives/autofillEnabledDirective.js"></script>
+
+    <script src="scripts/controllers/navigationController.js"></script>
+    <script src="scripts/controllers/homeController.js"></script>
+    <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/controllers/bookIndexController.js"></script>
+    <script src="scripts/controllers/bookDetailController.js"></script>
+    <!-- end app scripts -->
+
 </body>
 </html>
