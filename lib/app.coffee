@@ -53,6 +53,14 @@ userCtrl = baucis.rest {
   relations: true
 }
 
+try
+  logger.info 'Try to fix mquery issue'
+  mongoose = require('mongoose')
+  denied = mongoose.__proto__.mquery.permissions.count
+  delete denied.sort
+catch ex
+  logger.fatal 'Cannot fix count with sort issue from mquery'
+
 ## enable search
 bookCtrl.request 'collection', 'get', middlewares.baucisSearch ['name', 'desc']
 
