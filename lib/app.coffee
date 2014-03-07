@@ -64,6 +64,19 @@ catch ex
 ## enable search
 bookCtrl.request 'collection', 'get', middlewares.baucisSearch ['name', 'desc']
 
+#userCtrl.documents 'collection', 'post', (err, req, res, next)->
+#  if err.name is 'MongoError' and err.code is 11000
+#    res.json 400, {
+#      error:
+#        code: 'E_EMAIL_TAKEN'
+#        message: 'this email is taken'
+#    }
+#    return
+#
+#  logger.warn 'err', err
+#  next(err)
+
+
 ## restful api routes
 app.use '/api', baucis()
 

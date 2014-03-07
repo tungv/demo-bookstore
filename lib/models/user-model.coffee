@@ -1,9 +1,9 @@
 mongoose = require 'mongoose'
-
+uniqueValidator = require 'mongoose-unique-validator'
 crypto = require 'crypto'
 
 schema = new mongoose.Schema {
-  email: String
+  email: {type:String, unique: true}
   displayName: String
 
   salt: String
@@ -26,5 +26,7 @@ schema.virtual('userInfo').get ()-> {
 
 schema.methods.checkPassword = (password)->
   encryptPassword(password, @salt) is @hashedPassword
+
+schema.plugin(uniqueValidator,  { message: 'Value is not unique.' })
 
 module.exports = mongoose.model 'user', schema

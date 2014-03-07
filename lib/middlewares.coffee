@@ -2,7 +2,10 @@ crypto = require 'crypto'
 logger = require('log4js').getLogger 'middleware'
 _ = require 'lodash'
 
-isSigningUp = (req)-> req.url is '/users' and req.method is 'POST'
+isSigningUp = (req)->
+  console.log 'middleware.authenticate', req.method, req.url, req.body
+  req.url.match /^\/users/ and req.method is 'POST'
+
 getPassword = (req)->
   password = req.body['password'] or req.headers['x-auth-token']
   hashed = req.query['hashed'] or req.headers['x-auth-hashed']
@@ -37,8 +40,6 @@ exports.ensureAuthCriteria = (req, res, next)->
 
 exports.authenticate = (passport)->
   (req, res, next)->
-#    console.log 'middleware.authenticate', req.body
-
     if isSigningUp req
       req.body['password'] = getPassword req
       return next()
