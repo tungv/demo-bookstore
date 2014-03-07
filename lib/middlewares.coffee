@@ -1,4 +1,6 @@
 crypto = require 'crypto'
+logger = require('log4js').getLogger 'middleware'
+_ = require 'lodash'
 
 isSigningUp = (req)-> req.url is '/users' and req.method is 'POST'
 getPassword = (req)->
@@ -48,3 +50,17 @@ exports.authenticate = (passport)->
         next();
 
     auth req, res
+
+exports.baucisSearch = (fieldArray)->
+  (req, res, next)->
+    #logger.debug 'collection get'
+    query = req.query.search
+    #logger.debug 'search', query
+    if query?.length
+      regex = new RegExp query, 'ig'
+
+      conditions = {}
+      conditions[field] = regex for field in fieldArray
+
+      req.baucis.conditions = _.extend {}, req.baucis.conditions, conditions
+    next();

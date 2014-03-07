@@ -41,13 +41,20 @@ app.use '/api', middlewares.authenticate(passport)
 app.use passport.initialize()
 app.use passport.session()
 
-bookCtrl = baucis.rest 'book'
+bookCtrl = baucis.rest {
+  model: 'book'
+  relations: true
+  findBy: 'id'
+  #select: '-_id -__v'
+}
 userCtrl = baucis.rest {
   model: 'user'
   select: '-salt -hashedPassword'
+  relations: true
 }
 
-#bookCtrl.request
+## enable search
+bookCtrl.request 'collection', 'get', middlewares.baucisSearch ['name', 'desc']
 
 ## restful api routes
 app.use '/api', baucis()

@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 
 schema = new mongoose.Schema {
   desc: String
-  id: Number
+  id: {type: Number, unique: true}
   name: String
   picture: String
   price: Number

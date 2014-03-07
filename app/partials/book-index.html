@@ -1,12 +1,35 @@
-<div class="book-list">
+<h1>Books:</h1>
+<input type="search" name="book-search" ng-model="index.query"/>
+<button class="btn btn-primary" ng-click="index.update({limit: 12})">
+    Search
+</button>
+<div>
+    <!--{{ index.books.$paging }}-->
+    <span>Showing: {{ index.books.$paging.from }} - {{ index.books.$paging.to }} of {{ index.books.$paging.total }}</span>
+    <ul class="pagination">
+        <li ng-class="{disabled: !index.books.$paging.previous.limit}">
+            <a href="#" ng-click="index.update(index.books.$paging.previous)">&laquo;</a>
+        </li>
+
+        <li ng-repeat="p in index.books.$paging.visiblePages"
+                ng-class="{active: p.current}">
+            <a href="#" ng-click="index.update(p)">{{ p.page }}</a>
+        </li>
+        <li ng-class="{disabled: !index.books.$paging.next.limit}">
+            <a href="#" ng-click="index.update(index.books.$paging.next)">&raquo;</a>
+        </li>
+    </ul>
+
+</div>
+<div class="book-list clearfix">
     <div ng-repeat="book in index.books track by book.id"
          class="book"
          id="book-id-{{book.id}}">
 
-        <h3>{{book.name}}</h3>
-        <p>{{book.desc}}</p>
-        <ins>{{book.price}}</ins>
         <img ng-src="{{book.picture}}" alt="{{book.desc}}"/>
+        <h5>{{book.name}}</h5>
+        <!--<p>{{book.desc}}</p>-->
+        <ins>${{book.price | number}}</ins>
 
     </div>
 </div>
