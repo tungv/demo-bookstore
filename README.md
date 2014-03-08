@@ -50,7 +50,7 @@ GET     | /api/users        | ?count=true to get count
 GET     | /api/users/:id    | 
 PUT     | /api/users/:id    |
 DELETE  | /api/users/:id    |
-GET     | /api/books        | ?count=true to get count
+GET     | /api/books        | ?count=true to get count; ?search=query to filter books by name and desc
 POST    | /api/books        | must have unique id on body (I didn't generate auto-increment id)
 GET     | /api/books/:id    |
 PUT     | /api/books/:id    |
