@@ -5,22 +5,29 @@ angular.module 'BookStore', ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize']
       $routeProvider
       .when('/', {
             controller: 'HomeCtrl as home'
-            templateUrl: 'partials/home.html'
+            templateUrl: '/partials/home.html'
           })
       .when('/login', {
             controller: 'LoginCtrl as login'
-            templateUrl: 'partials/login.html'
+            templateUrl: '/partials/login.html'
           })
       .when('/signup', {
             controller: 'SignUpCtrl as signup'
-            templateUrl: 'partials/signup.html'
+            templateUrl: '/partials/signup.html'
+          })
+      .when('/books/:bookId', {
+            controller: 'BookDetailCtrl as detail'
+            templateUrl: '/partials/book-detail.html'
           })
       .when('/books', {
             controller: 'BookIndexCtrl as index'
-            templateUrl: 'partials/book-index.html'
+            templateUrl: '/partials/book-index.html'
+          })
+      .when('/error/404', {
+            templateUrl: '/partials/error-404.html'
           })
       .otherwise({
-            redirect: '/'
+            redirectTo: '/error/404'
           })
 
       $locationProvider.html5Mode on

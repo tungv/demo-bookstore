@@ -46,6 +46,7 @@ middlewares = require './middlewares.coffee'
 app.use '/api', middlewares.ensureAuthCriteria
 app.use '/api', middlewares.authenticate(passport)
 
+
 ## passport middlewares
 app.use passport.initialize()
 app.use passport.session()
@@ -76,6 +77,10 @@ bookCtrl.request 'collection', 'get', middlewares.baucisSearch ['name', 'desc']
 
 ## restful api routes
 app.use '/api', baucis()
+app.use '/api', (err, req, res, next)->
+  ## error handler
+  logger.warn err.stack
+  next err
 
 ## custom api routes
 app.post '/api/login', (req, res)->

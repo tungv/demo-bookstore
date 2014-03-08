@@ -46,14 +46,15 @@
 
 
 <div class="book-list clearfix">
-    <div ng-repeat="book in index.books track by book.id"
+    <a ng-repeat="book in index.books track by book.id"
          class="book"
-         id="book-id-{{book.id}}">
+         id="book-id-{{book.id}}"
+         ng-href="/books/{{book.id}}">
 
         <img ng-src="{{book.picture}}" alt="{{book.desc}}"/>
         <h5>{{book.name}}</h5>
         <!--<p>{{book.desc}}</p>-->
         <ins>${{book.price | number}}</ins>
 
-    </div>
+    </a>
 </div>
