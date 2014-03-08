@@ -3,7 +3,7 @@ logger = require('log4js').getLogger 'middleware'
 _ = require 'lodash'
 
 isSigningUp = (req)->
-  console.log 'middleware.authenticate', req.method, req.url, req.body
+  #console.log 'middleware.authenticate', req.method, req.url, req.body
   req.url.match /^\/users/ and req.method is 'POST'
 
 getPassword = (req)->

@@ -1,6 +1,6 @@
 angular.module 'BookStore'
 .factory 'User', ($resource)->
-    $resource '/api/users/:id', {
+    $resource "#{window.api_host}/api/users/:id", {
       id: '@id'
     }, {
       update:

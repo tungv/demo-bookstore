@@ -6,7 +6,7 @@ angular.module 'BookStore'
       $rootScope.user = $cookieStore.get('user') or {}
 
       @login = (email, password, callback=angular.noop)->
-        $http.post '/api/login?hashed=true', {email, password}
+        $http.post "#{window.api_host}/api/login?hashed=true", {email, password}
           .then (resp)->
             user = angular.extend resp.data, {password}
             $rootScope.user = user
@@ -19,7 +19,7 @@ angular.module 'BookStore'
             callback err
 
       @logout = (callback=angular.noop)->
-        $http.post '/api/logout'
+        $http.post "#{window.api_host}/api/logout"
           .then ->
             $rootScope.user = {}
             $cookieStore.remove 'user'

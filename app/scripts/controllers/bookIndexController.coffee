@@ -51,7 +51,7 @@ angular.module 'BookStore'
 
     (data, headerGetter)->
       linkHeader = headerGetter 'link'
-      return {} unless linkHeader.length
+      return {} unless linkHeader?.length
 
       parseLink data, linkHeader
 

@@ -36,7 +36,8 @@ angular.module 'BookStore', ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize']
 
           request: (config)->
             #console.log('request interceptor', config)
-            if $rootScope.user?.email? and config.url.match /^\/api\//
+            apiPath = "#{window.api_host}/api/"
+            if $rootScope.user?.email? and config.url.indexOf(apiPath) == 0
               config.headers['X-AUTH-USERNAME'] = $rootScope.user.email
               config.headers['X-AUTH-TOKEN'] = $rootScope.user.password
               config.headers['X-AUTH-HASHED'] = 'true'

@@ -11,7 +11,7 @@
         if (callback == null) {
           callback = angular.noop;
         }
-        return $http.post('/api/login?hashed=true', {
+        return $http.post("" + window.api_host + "/api/login?hashed=true", {
           email: email,
           password: password
         }).then(function(resp) {
@@ -32,7 +32,7 @@
         if (callback == null) {
           callback = angular.noop;
         }
-        return $http.post('/api/logout').then(function() {
+        return $http.post("" + window.api_host + "/api/logout").then(function() {
           $rootScope.user = {};
           $cookieStore.remove('user');
           $location.path('/');

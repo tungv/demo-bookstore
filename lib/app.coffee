@@ -7,6 +7,7 @@ express = require 'express'
 fs = require 'fs'
 baucis = require 'baucis'
 _ = require 'lodash'
+cors = require 'cors'
 
 ## cache index file
 ## TODO: use req.render
@@ -31,6 +32,14 @@ app.use express.static __dirname + '/../app'
 
 ## init authentication
 passport = require './authentication.coffee'
+
+## support cors
+#app.options '/api/*', cors(origin:true)
+app.use '/api', cors {
+  origin:true
+  allowedHeaders: 'Content-Type,X-AUTH-TOKEN,X-AUTH-USERNAME,X-AUTH-HASHED'
+  exposedHeaders: 'Link,Vary,API-Version,ETag'
+}
 
 ## custom middlewares
 middlewares = require './middlewares.coffee'
@@ -63,18 +72,6 @@ catch ex
 
 ## enable search
 bookCtrl.request 'collection', 'get', middlewares.baucisSearch ['name', 'desc']
-
-#userCtrl.documents 'collection', 'post', (err, req, res, next)->
-#  if err.name is 'MongoError' and err.code is 11000
-#    res.json 400, {
-#      error:
-#        code: 'E_EMAIL_TAKEN'
-#        message: 'this email is taken'
-#    }
-#    return
-#
-#  logger.warn 'err', err
-#  next(err)
 
 
 ## restful api routes
