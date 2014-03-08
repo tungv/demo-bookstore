@@ -25,7 +25,7 @@ Things that done
 1. Set up database with data from pageResources/price.json file
 2. Must-have page’s features:
   - User registration
-  - User login/logout
+  - User login/logout (**with both hashed and non-hashed passwords**)
   - Get book list (login require)
   - Get single book (login require)
   - Update book data (login require)
@@ -35,9 +35,38 @@ Things that done
   - Sort book
   - Paging book list
 
+API endpoints
+-------------
+#### Non-authenticating end-points
+Methods | url               | note
+--------|-------------------|----------
+POST    | /api/login        | returns current user info
+POST    | /api/users        | create new user
+
+#### Authenticating end-points
+Methods | url               | note
+--------|-------------------|----------
+GET     | /api/users        | ?count=true to get count
+GET     | /api/users/:id    | 
+PUT     | /api/users/:id    |
+DELETE  | /api/users/:id    |
+GET     | /api/books        | ?count=true to get count
+POST    | /api/books        | must have unique id on body (I didn't generate auto-increment id)
+GET     | /api/books/:id    |
+PUT     | /api/books/:id    |
+DELETE  | /api/books/:id    |
+
+#### Request Headers
+name            | note
+----------------|-----------------------------
+X-AUTH-USERNAME | authenticating email
+X-AUTH-TOKEN    | md5'ed or plain-text password
+X-AUTH-HASHED   | indicates that password was hashed if set to true
+
 Things that aren't done
 =======================
 1. CORS support for IE (I'm not sure if it works)
 2. Authorization, any logged user can change others' information
 3. Strictly validations
 4. mocha testing
+

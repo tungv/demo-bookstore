@@ -5,16 +5,18 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/styles/bookstore.css"/>
     <script>
+        // for easy configuration
         window.api_host = 'http://api.test.com:3000'
     </script>
 </head>
 <body ng-app="BookStore">
-    <ng-include src="'/partials/navbar.html'">
-    </ng-include>
+    <ng-include src="'/partials/navbar.html'"></ng-include>
+
     <div class="container">
         <div ng-view></div>
     </div>
 
+    <!--library-->
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
@@ -23,8 +25,9 @@
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="/bower_components/JavaScript-MD5/js/md5.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--end library-->
 
-    <!-- app scripts -->
+    <!-- app scripts: can be easily concat and inject with grunt -->
     <script src="/scripts/app.js"></script>
 
     <script src="/scripts/services/auth.js"></script>
