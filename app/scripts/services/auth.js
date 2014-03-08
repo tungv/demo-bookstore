@@ -50,5 +50,3 @@
   })());
 
 }).call(this);
-
-//# sourceMappingURL=auth.map

@@ -18,5 +18,3 @@
   })());
 
 }).call(this);
-
-//# sourceMappingURL=navigationController.map
