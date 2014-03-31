@@ -1,0 +1,38 @@
+.navbar {
+  background: #336699;
+  color: #ffffff;
+}
+.book {
+  display: block;
+  float: left;
+  background: #6699cc;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  color: #ffffff;
+}
+.book:hover {
+  -webkit-transform: scale(1.05);
+}
+.book:hover * {
+  color: #ffffff;
+}
+.book h5 {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  margin: 0;
+  height: 50px;
+  background: #336699;
+  overflow: hidden;
+  -webkit-transition: height .3s linear, overflow .1s linear .3s;
+}
+.book h5:hover {
+  height: 200px;
+  overflow: visible;
+}

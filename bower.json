@@ -1,0 +1,23 @@
+{
+  "name": "demo-bookstore",
+  "version": "0.0.0",
+  "homepage": "https://github.com/gmanvn/demo-bookstore",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "JavaScript-MD5": "~1.1.0",
+    "bootstrap": "~3.1.1",
+    "angular": "~1.2.15",
+    "angular-route": "~1.2.15",
+    "angular-cookies": "~1.2.15",
+    "angular-resource": "~1.2.15",
+    "angular-sanitize": "~1.2.15"
+  }
+}
